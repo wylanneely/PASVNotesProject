@@ -10,6 +10,8 @@ import Foundation
 
 class NotesController {
     
+    static var shared = NotesController()
+    
     private var notes: [Note] = []
     //crud functions
     
