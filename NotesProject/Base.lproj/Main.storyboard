@@ -21,12 +21,19 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp4-vr-k23">
+                                <rect key="frame" x="298" y="771" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Pjx-2W-bJb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0ci-ce-ioS"/>
+                            <constraint firstAttribute="trailing" secondItem="hp4-vr-k23" secondAttribute="trailing" constant="20" id="Ioc-Ja-eSE"/>
                             <constraint firstItem="Pjx-2W-bJb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Okb-Yq-REa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hp4-vr-k23" secondAttribute="bottom" constant="12" id="UHf-ji-E1h"/>
                             <constraint firstItem="Pjx-2W-bJb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Zbc-ss-p1c"/>
                             <constraint firstAttribute="bottom" secondItem="Pjx-2W-bJb" secondAttribute="bottom" id="dt0-Oi-5Iq"/>
                         </constraints>
