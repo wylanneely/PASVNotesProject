@@ -12,13 +12,28 @@ class NotesController {
     
     static var shared = NotesController()
     
-    private var notes: [Note] = []
+    private var notes: [Note] = [] {
+        didSet {
+            SaveController.shared.saveNotes()
+        }
+    }
     //crud functions
+    
+    
+    private init() {
+        // Automatically load notes when NotesController is initialized
+        SaveController.shared.loadNotes()
+    }
+    
+    // Helper: Replace notes
+    func replaceAllNotes(with newNotes: [Note]) {
+        self.notes = newNotes
+    }
     
     //MARK: - Create
                   //outside variable, or what is displayed when called,
     func createNote(title insideVariable:String, message: String){
-                            //what you use inside of the functino
+                            //what you use inside of the function
         let newNote = Note(title: insideVariable, message: message)
         notes.append(newNote)
     }
@@ -40,6 +55,11 @@ class NotesController {
     
     func getNoteByID2(_ id:UUID)->Note?{
         return notes.first { $0.id == id}
+    }
+    
+    
+    func returnSelectedNote(row: Int)-> Note {
+        return notes[row]
     }
     
    

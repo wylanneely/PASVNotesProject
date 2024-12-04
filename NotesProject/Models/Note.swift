@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Note {
+struct Note: Codable {
     
     var title: String
     var message: String
     
     var timestamp: Date
-    var id: UUID
+    var id: UUID 
     
     
     init(title: String, message: String) {
@@ -25,5 +25,6 @@ struct Note {
     }
     
 }
+
 
 

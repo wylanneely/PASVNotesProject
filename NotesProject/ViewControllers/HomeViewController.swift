@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshTableViewDelegate  {
     
-    
+   //var saveController = SaveController
     var notes: [Note] {
         return NotesController.shared.getAllNotes()
     }
