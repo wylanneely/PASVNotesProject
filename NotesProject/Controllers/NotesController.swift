@@ -10,19 +10,19 @@ import Foundation
 
 class NotesController {
     
-    static var shared = NotesController()
+    let saveController = SaveController()
     
     private var notes: [Note] = [] {
         didSet {
-            SaveController.shared.saveNotes()
+            saveController.saveNotes(notes: self.notes)
         }
     }
     //crud functions
     
     
-    private init() {
+    init() {
         // Automatically load notes when NotesController is initialized
-        SaveController.shared.loadNotes()
+        self.notes = saveController.loadNotes()
     }
     
     // Helper: Replace notes
@@ -41,7 +41,7 @@ class NotesController {
     //MARK: - Read
     
     func getAllNotes()->[Note] {
-        return self.notes
+       return saveController.loadNotes()
     }
                     
     func getNoteByID(_ id:UUID)->Note?{

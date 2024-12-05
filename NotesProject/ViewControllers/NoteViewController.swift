@@ -8,6 +8,8 @@
 import UIKit
 
 class NoteViewController: UIViewController {
+    
+    let notesController = NotesController()
 
     var delegate: RefreshTableViewDelegate?
     
@@ -46,12 +48,11 @@ class NoteViewController: UIViewController {
         if let title = titleTextField.text,
            let message = messageTextView.text {
             
+            notesController.createNote(title: title, message: message)
             
-            
-            NotesController.shared.createNote(title: title, message: message)
-            
-            self.dismiss(animated: true)
-            delegate?.refeshNotesTableView()
+            self.dismiss(animated: true) {
+                self.delegate?.refeshNotesTableView()
+            }
         }
         
     }

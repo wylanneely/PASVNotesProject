@@ -9,9 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshTableViewDelegate  {
     
+    let notesController = NotesController()
+    
    //var saveController = SaveController
     var notes: [Note] {
-        return NotesController.shared.getAllNotes()
+        return notesController.getAllNotes()
     }
   
     //MARK: - Custom Delegate

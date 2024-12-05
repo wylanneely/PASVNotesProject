@@ -9,17 +9,13 @@ import Foundation
 
 class SaveController {
     
-    static let shared = SaveController() // Singleton instance
-    
-    private init() {} // Prevent external instantiation
-    
+        
     private let notesKey: String = "notesKey"
     
     
+    
     // Save notes to UserDefaults
-    func saveNotes() {
-        
-        let notes: [Note] = NotesController.shared.getAllNotes()
+    func saveNotes(notes:[Note]) {
         
         let encoder = JSONEncoder()
         do {
@@ -33,19 +29,20 @@ class SaveController {
     }
 
     // Load notes from UserDefaults
-    func loadNotes() {
+    func loadNotes()-> [Note] {
         guard let data = UserDefaults.standard.data(forKey: notesKey) else {
             print("No notes to load.")
-            return
+            return []
         }
         
         let decoder = JSONDecoder()
         do {
             let loadedNotes = try decoder.decode([Note].self, from: data)
-            NotesController.shared.replaceAllNotes(with: loadedNotes)
+            return loadedNotes
             print("Notes loaded successfully!")
         } catch {
             print("Failed to load notes: \(error)")
         }
+        return []
     }
 }
