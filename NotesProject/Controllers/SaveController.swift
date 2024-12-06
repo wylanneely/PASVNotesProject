@@ -12,15 +12,12 @@ class SaveController {
         
     private let notesKey: String = "notesKey"
     
-    
-    
     // Save notes to UserDefaults
     func saveNotes(notes:[Note]) {
         
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(notes)
-            
             UserDefaults.standard.set(data, forKey: notesKey)
             print("Notes saved successfully!")
         } catch {
@@ -39,7 +36,6 @@ class SaveController {
         do {
             let loadedNotes = try decoder.decode([Note].self, from: data)
             return loadedNotes
-            print("Notes loaded successfully!")
         } catch {
             print("Failed to load notes: \(error)")
         }

@@ -11,11 +11,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let notesController = NotesController()
     
-   //var saveController = SaveController
     var notes: [Note] {
         return notesController.getAllNotes()
     }
   
+
     //MARK: - Custom Delegate
     
     func refeshNotesTableView() {

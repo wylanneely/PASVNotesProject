@@ -49,10 +49,8 @@ class NoteViewController: UIViewController {
            let message = messageTextView.text {
             
             notesController.createNote(title: title, message: message)
-            
-            self.dismiss(animated: true) {
-                self.delegate?.refeshNotesTableView()
-            }
+            self.delegate?.refeshNotesTableView()
+            self.dismiss(animated: true)            
         }
         
     }

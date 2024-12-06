@@ -65,7 +65,7 @@ class NotesController {
    
     //MARK: - Update
     
-    func updateNote(id:UUID,newTitle: String?, newMessage:String?){
+    func updateNote(id:UUID, newTitle: String?, newMessage:String?){
         
         let c = notes.count
         
