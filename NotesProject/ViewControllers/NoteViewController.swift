@@ -28,11 +28,11 @@ class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
         if isEditingNote {
             createOrUpdateNoteButton.setTitle("update", for: .normal)
             titleTextField.text = note?.title
             messageTextView.text = note?.message
+            deleteNoteButton.isHidden = false
         }
 
     }
@@ -42,19 +42,42 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var createOrUpdateNoteButton: UIButton!
+    @IBOutlet weak var deleteNoteButton: UIButton!
+    //deleteOutlet
     
     //MARK: Action
-    @IBAction func createNoteButtonTapped(_ sender: Any) {
-        if let title = titleTextField.text,
-           let message = messageTextView.text {
+    @IBAction func createOrUpdateNoteButtonTapped(_ sender: Any) {
+        if isEditingNote {
+            if let title = titleTextField.text,
+               let message = messageTextView.text,
+               let note = note {
+                notesController.updateNote(id: note.id, newTitle: title, newMessage: message)
+                self.delegate?.refeshNotesTableView()
+                self.dismiss(animated: true)
+            }
+        } else {
+            if let title = titleTextField.text,
+               let message = messageTextView.text {
+                
+                notesController.createNote(title: title, message: message)
+                self.delegate?.refeshNotesTableView()
+                self.dismiss(animated: true)
+            }
             
-            notesController.createNote(title: title, message: message)
+        }
+    }
+        
+    
+    @IBAction func deleteNoteButtonTapped(_ sender: Any) {
+        if let note = self.note {
+            notesController.deleteNoteById(note.id)
             self.delegate?.refeshNotesTableView()
-            self.dismiss(animated: true)            
+            self.dismiss(animated: true)
         }
         
     }
     
+        //Make a delete button that appears only when entering through edit segue
    
 }
 

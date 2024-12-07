@@ -11,14 +11,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let notesController = NotesController()
     
-    var notes: [Note] {
-        return notesController.getAllNotes()
-    }
-  
+    var notes: [Note]?
 
     //MARK: - Custom Delegate
     
     func refeshNotesTableView() {
+        self.notes = notesController.getAllNotes()
         self.tableView.reloadData()
         self.tableView.reloadInputViews()
     }
@@ -27,6 +25,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.notes = notesController.getAllNotes()
         setupTableView() //call setup function
     }
 
@@ -46,7 +45,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        if let notesCount = notes?.count {
+            return notesCount
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -57,20 +60,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoteViewCell", for: indexPath) as? NoteViewCell else {
                    return UITableViewCell()
-               }
+        }
         
-        let note = notes[indexPath.row]
-        cell.setupNote(note: note)
+        if let note = notes?[indexPath.row] {
+            cell.setupNote(note: note)
+            return cell
+        }
+            return UITableViewCell()
         
-        return cell
     }
     
     var selectedNote: Note?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-            self.selectedNote = self.notes[indexPath.row]
+        if let notes = notes {
+            self.selectedNote = notes[indexPath.row]
             self.performSegue(withIdentifier:"toEditNoteVC" , sender: self)
+        }
         
     }
     

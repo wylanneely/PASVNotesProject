@@ -105,17 +105,10 @@ class NotesController {
     //MARK: - Delete
     
     
-    func deleteNoteById(_ id: UUID) -> Bool {
-        guard let index = notes.firstIndex(where: { $0.id == id }) else {return false}
-        notes.remove(at: index)
-        return true
-    }
-    
-    func deleteNotebyId2(_ id: UUID){
-        for i in 0..<notes.count {
-            if notes[i].id == id {
-                notes.remove(at: i)
-            }
+    func deleteNoteById(_ id: UUID){
+        if let index = notes.firstIndex(where: { $0.id == id }) {
+            notes.remove(at: index)
         }
     }
+    
 }
